@@ -1,5 +1,9 @@
+
+jobType =[['Athlete'], ['Finance'], ['Tech'], ['Entertainment'], ['Creative'], ['Other']]
+
+
 class Job:
-    jobType =[['Athlete'], ['Finance'], ['Tech'], ['Entertainment'], ['Creative'], ['Other']]
+   
 
     def __init__(self, job, salary: float, chosenJobType):
         self.job = job

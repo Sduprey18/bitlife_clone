@@ -1,12 +1,20 @@
+import random
+
+locations = ['America', 'China', 'Japan', 'Trinidad', 'Bangladesh', 'Zimbabwe']
 class Player:
-    def __init__(self,placeOfBirth: str, money: float, health: int, age: int):
+
+    
+    def __init__(self, money: float, health: int, age: int):
         self.health = health
-        self.placeOfBirth = placeOfBirth
+        self.placeOfBirth = random.choice(locations)
         self.money = money
         self.age = age
         
     def ageUp(self) -> int:
         self.age +=1 
+    
+    def getAge(self) -> int:
+        return self.age
 
     def getHealth(self) -> int:
         return self.health
