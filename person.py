@@ -9,7 +9,9 @@ class Player:
         self.placeOfBirth = random.choice(locations)
         self.money = money
         self.age = age
-        
+    
+    def getPlaceOfBirth(self):
+        return self.placeOfBirth
     def ageUp(self) -> int:
         self.age +=1 
     

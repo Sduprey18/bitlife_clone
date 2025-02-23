@@ -1,5 +1,6 @@
 import customtkinter
 from person import Player
+from stories import Stories
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -37,6 +38,8 @@ class App(customtkinter.CTk):
     def updateLabels(self):
         self.moneyLabel.configure(text=f"Money: ${self.player.getMoney()}")
         self.ageLabel.configure(text=f"Age : {self.player.getAge()}")
+        self.storyText = Stories()
+        self.birthLabel = customtkinter.CTkLabel(self, text =self.storyText.generateBirth(self.player.getPlaceOfBirth()))
 
     #create the player 
     def createLife(self):
