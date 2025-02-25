@@ -39,13 +39,15 @@ class App(customtkinter.CTk):
     def updateLabels(self):
         self.moneyLabel.configure(text=f"Money: ${self.player.getMoney()}")
         self.ageLabel.configure(text=f"Age : {self.player.getAge()}")
-        self.storyText = Stories()
-        self.birthLabel = customtkinter.CTkLabel(self, text =self.storyText.generateBirth(self.player.getPlaceOfBirth()))
         self.player.ageUp()
 
-    #create the player 
+    #create the player, add the first text 
     def createLife(self):
-        self.player = Player( 0.0, 100, 0)
+        self.player = Player( 0.0, 100, 0) 
+        self.storyText = Stories()
+        self.birthLabel = customtkinter.CTkLabel(self, text=self.storyText.generateBirth(self.player.getPlaceOfBirth()))
+        self.birthLabel.grid(row=1, column=0, columnspan=1,
+                             padx=225, pady=215, sticky='ew')
 
     #create the stats to show 
     def displayStats(self):

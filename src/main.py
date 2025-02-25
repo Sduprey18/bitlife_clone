@@ -1,5 +1,9 @@
 import src.window as window
 
-window = window.App()
-window.mainloop()
+def main():
+    app = window.App()
+    app.mainloop()     
+
+if __name__ == "__main__":
+    main()  
 

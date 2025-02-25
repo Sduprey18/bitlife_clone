@@ -4,4 +4,4 @@ CREATE:
 -
 
 UPDATE:
--add stories to graphic window plz let this work
+-add stories to graphic window
