@@ -56,10 +56,11 @@ class App(customtkinter.CTk):
     def createLife(self):
         self.player = Player(0.0, 100, 0)
         self.storyText = Stories()
-        self.birthLabel = customtkinter.CTkLabel(self, text=self.storyText.generateBirth(
-            self.player.getPlaceOfBirth()), fg_color="white", text_color="black")
-        self.birthLabel.grid(row=3, column=0, columnspan=2,
+        self.textLabel = Label(self)
+        self.textLabel.grid(row=1, column=0, rowspan = 2, columnspan=2,
                              padx=20, pady=10, sticky='ew')
+        self.textLabel.addText(self.storyText.generateBirth(
+            self.player.getPlaceOfBirth()))
 
     
     def displayStats(self):
