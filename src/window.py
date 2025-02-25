@@ -1,6 +1,8 @@
 import customtkinter
 from src.person import Player
 from src.stories import Stories
+from src.labels import Label
+
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -9,11 +11,14 @@ class App(customtkinter.CTk):
         self.title("Bitlife Clone")
         customtkinter.set_appearance_mode("system")
 
-        # Start button for the game
-        self.createLifeButton = customtkinter.CTkButton(self, text="Create a random life!",
-                                                        command=self.gameStatus, fg_color="yellow", text_color='black',
-                                                        hover_color='gray')
-        self.createLifeButton.grid(row=0, column=0, padx=225, pady=450)
+        
+        self.createLifeButton = customtkinter.CTkButton(
+            self, text="Create a random life!",
+            command=self.gameStatus, fg_color="yellow", text_color='black',
+            hover_color='gray'
+        )
+        self.createLifeButton.grid(
+            row=0, column=0, padx=20, pady=20)  
 
     def destroyButton(self):
         self.createLifeButton.destroy()
@@ -21,39 +26,55 @@ class App(customtkinter.CTk):
     # Function to display age, money, call age up button
     def gameStatus(self):
         self.destroyButton()
-        self.ageLabel = customtkinter.CTkLabel(self, text="Age", fg_color="yellow", text_color="black")
-        self.ageLabel.grid(row=0, column=0, padx=75, pady=50)
-
-        self.moneyLabel = customtkinter.CTkLabel(self, text="Money", fg_color="yellow", text_color="black")
-        self.moneyLabel.grid(row=0, column=1, padx=25, pady=50)
-        
+       
         self.createLife()
+        
+        self.ageLabel = customtkinter.CTkLabel(
+            self, text=f"Age: {self.player.getAge()}", fg_color="yellow", text_color="black")
+        self.ageLabel.grid(row=0, column=0, padx=20, pady=10, sticky="w")
+
+        self.moneyLabel = customtkinter.CTkLabel(
+            self, text=f"Money: ${self.player.getMoney()}", fg_color="yellow", text_color="black")
+        self.moneyLabel.grid(row=0, column=1, padx=20, pady=10, sticky="e")
+
         self.ageUpButton()
 
-    # Function to make the age up button
+   
     def ageUpButton(self):
-        self.ageUpButton = customtkinter.CTkButton(self, text="Age up!", command=self.updateLabels, fg_color="yellow", text_color='black', hover_color='gray')
-        self.ageUpButton.grid(row=1, column=0, columnspan=2, padx=225, pady=245, sticky='ew')
-        print(self.player.age)
+        self.ageUpBtn = customtkinter.CTkButton(
+            self, text="Age up!", command=self.updateLabels, fg_color="yellow", text_color='black', hover_color='gray'
+        )
+        self.ageUpBtn.grid(row=4, column=0, columnspan=2,
+                           padx=20, pady=20, sticky='ew')
 
     def updateLabels(self):
+        self.player.ageUp()  
         self.moneyLabel.configure(text=f"Money: ${self.player.getMoney()}")
-        self.ageLabel.configure(text=f"Age : {self.player.getAge()}")
-        self.player.ageUp()
+        self.ageLabel.configure(text=f"Age: {self.player.getAge()}")
 
-    #create the player, add the first text 
+    
     def createLife(self):
-        self.player = Player( 0.0, 100, 0) 
+        self.player = Player(0.0, 100, 0)
         self.storyText = Stories()
-        self.birthLabel = customtkinter.CTkLabel(self, text=self.storyText.generateBirth(self.player.getPlaceOfBirth()))
-        self.birthLabel.grid(row=1, column=0, columnspan=1,
-                             padx=225, pady=215, sticky='ew')
+        self.birthLabel = customtkinter.CTkLabel(self, text=self.storyText.generateBirth(
+            self.player.getPlaceOfBirth()), fg_color="white", text_color="black")
+        self.birthLabel.grid(row=3, column=0, columnspan=2,
+                             padx=20, pady=10, sticky='ew')
 
-    #create the stats to show 
+    
     def displayStats(self):
-        self.ageText = customtkinter.CTkTextbox(self, width=200)  # Add the width parameter
-        self.ageText.grid(row=2, column=0, columnspan=2)
+        self.ageText = customtkinter.CTkTextbox(self, width=200)
+        self.ageText.grid(row=3, column=0, columnspan=2, padx=20, pady=10)
 
 
 app = App()
+
+
+for i in range(4): 
+    app.grid_rowconfigure(i, weight=1)
+
+for j in range(2):  
+    app.grid_columnconfigure(j, weight=1)
+
 app.mainloop()
+

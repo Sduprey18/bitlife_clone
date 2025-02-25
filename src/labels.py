@@ -1,7 +1,9 @@
 import customtkinter
 
-class label:
-    def __inint__(self, customText):
-        
+class Label(customtkinter.CTkScrollableFrame):
+    def __init__(self, master):
+        super().__init__(master)
+    
+    def addText(self, customText):
         self.customLabel = customtkinter.CTkLabel(self, text=customText)
 
