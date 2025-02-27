@@ -13,5 +13,5 @@ stories = ['I was born in X, and my parents always joke that I was an \'oopsie b
 class Stories:
     def generateBirth(self, countryName: str) -> str:
         stringToShow = random.choice(stories)
-        stringToShow.replace('X', countryName)
+        stringToShow = stringToShow.replace('X', countryName)
         return stringToShow

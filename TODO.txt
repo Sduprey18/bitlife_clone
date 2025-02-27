@@ -1,7 +1,7 @@
 TODO:
 
 CREATE:
--
+- Implement random events. 
 
 UPDATE:
--add stories to graphic window
+-as of right now, we'll have the text start at the top. 
