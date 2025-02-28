@@ -13,9 +13,9 @@ class Events:
     all of which could affect our money, health, happiness 
     '''
 
-    def randomEventBaby(self, person) -> str:
-        
-        rand = random.randint(1,10)
+    def randomEventBaby(self, **kwargs) -> str:
+
+        rand = kwargs.get("rand", random.randint(1, 10))
 
         match (rand):
             case 1:
