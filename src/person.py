@@ -9,6 +9,7 @@ class Player:
         self.placeOfBirth = random.choice(locations)
         self.money = money
         self.age = age
+        self.happiness = 100
     
     def getPlaceOfBirth(self):
         return self.placeOfBirth
@@ -29,11 +30,27 @@ class Player:
         self.money= newMoney
         return self.getMoney
     
+    def getHappiness(self) -> None:
+        return self.happiness
+
+    
     def addMoney(self, newMoney: float) -> float:
         self.money = self.money + newMoney
         return self.money
     
-    def adjustHealth(self, healthChange: int) -> int:
-        self.health += healthChange
+    def adjustHealth(self, healthChange: int) -> None:
+        if self.health + healthChange <= 100:
+            self.health += healthChange
+        else:
+            self.health = 100
+    
+    def adjustHappiness(self, happinessChange: int) -> None:
+        if self.happiness + happinessChange <= 100:
+            self.happiness += happinessChange
+        else:
+            self.happiness = 100
+
+
+
 
     

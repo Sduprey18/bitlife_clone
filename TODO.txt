@@ -1,7 +1,8 @@
 TODO:
 
 CREATE:
-- Implement random events. 
+- Implement random events.  (working on this right now)
+-Add unit testing 
 
 UPDATE:
 -as of right now, we'll have the text start at the top. 
