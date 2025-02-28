@@ -18,8 +18,6 @@ class Test(unittest.TestCase):
         testEvents.randomEventBaby(rand=2)
         self.assertEqual(self.person.getHealth(), 100)
 
-        
-
         #Test Rand 3, happiness should be 85
         self.person.adjustHappiness(-25)
         testEvents.randomEventBaby(rand=3)

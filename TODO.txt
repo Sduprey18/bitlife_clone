@@ -1,8 +1,9 @@
 TODO:
 
 CREATE:
-- Implement random events.  (working on this right now)
--Add unit testing 
+-add wigits for when a random event happens
+
+
 
 UPDATE:
 -as of right now, we'll have the text start at the top. 
