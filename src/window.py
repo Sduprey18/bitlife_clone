@@ -2,6 +2,7 @@ import customtkinter
 from src.person import Player
 from src.stories import Stories
 from src.labels import Label
+from src.randomEventsView import RandomEventFrame
 
 
 class App(customtkinter.CTk):
@@ -18,7 +19,7 @@ class App(customtkinter.CTk):
             hover_color='gray'
         )
         self.createLifeButton.grid(
-            row=0, column=0, padx=20, pady=20)  
+            row=0, column=0, padx=20, pady=20) 
 
     def destroyButton(self):
         self.createLifeButton.destroy()
@@ -48,7 +49,11 @@ class App(customtkinter.CTk):
                            padx=20, pady=20, sticky='ew')
 
     def updateLabels(self):
-        self.player.ageUp()  
+        self.player.ageUp()
+        self.testThing = RandomEventFrame(self, self.player)
+        self.testThing.grid(
+            row=0, column=1, padx=10, pady=(10, 0))
+        
         self.moneyLabel.configure(text=f"Money: ${self.player.getMoney()}")
         self.ageLabel.configure(text=f"Age: {self.player.getAge()}")
 
