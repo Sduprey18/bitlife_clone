@@ -50,7 +50,7 @@ class Events:
             case 10:
                 #CHANGE THIS IN THE FUTURE 
                 self.person.adjustHealth(-3)
-                self.person.adjustHealth(-3)
+                self.person.adjustHappiness(-3)
                 return ("Your parents decide to circumcise you (if male)")
 
         pass
