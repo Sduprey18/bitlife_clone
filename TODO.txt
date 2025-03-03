@@ -1,9 +1,7 @@
 TODO:
 
 CREATE:
--add wigits for when a random event happens
+Create possesions, new labels for money and happiness, and an illness page view 
 
 
-
-UPDATE:
--as of right now, we'll have the text start at the top. 
+UPDATE: Make the widgits in the right position, and the right size

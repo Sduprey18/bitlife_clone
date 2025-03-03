@@ -24,7 +24,7 @@ class App(customtkinter.CTk):
     def destroyButton(self):
         self.createLifeButton.destroy()
 
-    # Function to display age, money, call age up button
+    # Function to display age, money, happiness, call age up button
     def gameStatus(self):
         self.destroyButton()
        
@@ -32,11 +32,18 @@ class App(customtkinter.CTk):
         
         self.ageLabel = customtkinter.CTkLabel(
             self, text=f"Age: {self.player.getAge()}", fg_color="yellow", text_color="black")
-        self.ageLabel.grid(row=0, column=0, padx=20, pady=10, sticky="w")
+        self.ageLabel.grid(row=0, column=0, padx=0, pady=0, sticky="w")
 
         self.moneyLabel = customtkinter.CTkLabel(
             self, text=f"Money: ${self.player.getMoney()}", fg_color="yellow", text_color="black")
-        self.moneyLabel.grid(row=0, column=1, padx=20, pady=10, sticky="e")
+        self.moneyLabel.grid(row=1, column=1, padx=0, pady=0, sticky="w")
+
+        self.happinessLabel = customtkinter.CTkLabel(self, text=f"Happiness: {self.player.getHappiness()}",fg_color = "yellow", text_color = "black")
+        self.happinessLabel.grid(row=1, column=0, padx=0, pady=0, sticky="w")
+
+        self.healthLabel = customtkinter.CTkLabel(self, text=f"Health: {self.player.getHealth()}",fg_color="yellow", text_color="black")
+        self.healthLabel.grid(row =3 , column = 0, padx = 0, pady = 0, sticky = 'w')
+
 
         self.ageUpButton()
 
@@ -45,7 +52,7 @@ class App(customtkinter.CTk):
         self.ageUpBtn = customtkinter.CTkButton(
             self, text="Age up!", command=self.updateLabels, fg_color="yellow", text_color='black', hover_color='gray'
         )
-        self.ageUpBtn.grid(row=4, column=0, columnspan=2,
+        self.ageUpBtn.grid(row=16, column=0, columnspan=2,
                            padx=20, pady=20, sticky='ew')
 
     def updateLabels(self):
@@ -56,6 +63,8 @@ class App(customtkinter.CTk):
         
         self.moneyLabel.configure(text=f"Money: ${self.player.getMoney()}")
         self.ageLabel.configure(text=f"Age: {self.player.getAge()}")
+        self.happinessLabel.configure(text=f"Happiness: {self.player.getHappiness()}")
+        self.healthLabel.configure(text=f"Health: {self.player.getHealth()}")
 
     
     def createLife(self):
@@ -74,9 +83,11 @@ class App(customtkinter.CTk):
 
 
 app = App()
+app.attributes("-fullscreen", True)  #make fullscreen for mac
+app.bind("<Escape>", lambda e: app.attributes("-fullscreen", False))
 
 
-for i in range(4): 
+for i in range(16): 
     app.grid_rowconfigure(i, weight=1)
 
 for j in range(2):  
