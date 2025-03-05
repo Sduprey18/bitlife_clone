@@ -1,10 +1,14 @@
 import customtkinter
+import pygame
+import os
 from src.person import Player
 from src.stories import Stories
 from src.labels import Label
 from src.randomEventsView import RandomEventFrame
 
-
+pygame.mixer.init()
+alertPath = os.path.join(os.path.dirname(__file__), "../sounds/alert.mp3")
+buttonClickPath = os.path.join(os.path.dirname(__file__), "../sounds/button_click.mp3")
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -13,7 +17,6 @@ class App(customtkinter.CTk):
         self.frames = []
         customtkinter.set_appearance_mode("system")
 
-        
         self.createLifeButton = customtkinter.CTkButton(
             self, text="Create a random life!",
             command=self.gameStatus, fg_color="yellow", text_color='black',
@@ -21,12 +24,16 @@ class App(customtkinter.CTk):
         )
         self.createLifeButton.grid(
             row=0, column=0, padx=20, pady=20) 
+        
+        self.alertSound = pygame.mixer.Sound(alertPath)
+        self.buttonSound = pygame.mixer.Sound(buttonClickPath)
 
     def destroyButton(self):
         self.createLifeButton.destroy()
 
     # Function to display age, money, happiness, call age up button
     def gameStatus(self):
+        self.buttonSound.play()
         self.destroyButton()
        
         self.createLife()
@@ -64,6 +71,7 @@ class App(customtkinter.CTk):
 
 
     def updateLabels(self):
+        self.buttonSound.play()
         self.player.ageUp()
         if len(self.frames) == 0:
             self.randomEventFrame = RandomEventFrame(self, self.player, 0 )

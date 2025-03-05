@@ -1,7 +1,7 @@
 TODO:
 
 CREATE:
-Create possesions, new labels for money and happiness, and an illness page view 
+Create possesions, , and an illness page view, add sounds to frames
 
 
-UPDATE: Make the widgits in the right position, and the right size
+UPDATE: 
