@@ -10,6 +10,7 @@ class App(customtkinter.CTk):
         super().__init__()
         self.geometry("600x500")
         self.title("Bitlife Clone")
+        self.frames = []
         customtkinter.set_appearance_mode("system")
 
         
@@ -54,22 +55,35 @@ class App(customtkinter.CTk):
         )
         self.ageUpBtn.grid(row=7, column=0, columnspan=2,
                            padx=20, pady=20, sticky='s')
+        print(len(self.frames))
+        '''
+        if len(self.frames) >0:
+            frame = self.frames.pop(0)
+            frame.destroy()
+        ''' 
+
 
     def updateLabels(self):
         self.player.ageUp()
-        self.testThing = RandomEventFrame(self, self.player, 0 )
-        self.testThing.grid(
-            row=0, column=1, padx=10, pady=(10, 0))
+        if len(self.frames) == 0:
+            self.randomEventFrame = RandomEventFrame(self, self.player, 0 )
+            self.randomEventFrame.grid(
+                row=0, column=1, padx=10, pady=(10, 0))
+            self.frames.append(self.randomEventFrame)
+        else:
+            frameToRemove = self.frames.pop(0)
+            frameToRemove.destroy()
+            self.randomEventFrame = RandomEventFrame(self, self.player, 0)
+            self.randomEventFrame.grid(
+                row=0, column=1, padx=10, pady=(10, 0))
+            self.frames.append(self.randomEventFrame)
+
         
         self.moneyLabel.configure(text=f"Money: ${self.player.getMoney()}")
         self.ageLabel.configure(text=f"Age: {self.player.getAge()}")
         self.happinessLabel.configure(text=f"Happiness: {self.player.getHappiness()}")
         self.healthLabel.configure(text=f"Health: {self.player.getHealth()}")
         
-        
-        if self.testThing.windowExists():
-            print("ok, im seeing a window exists")
-            self.testThing.closeAllFrames()
 
     
     def createLife(self):
